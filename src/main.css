@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: 'Calibri', sans-serif;
+  background-image: url('bg.png');
+  color: gold;
+}
+
+main {
+  max-width: 720px;
+  margin: auto;
+}
+
+h1 {
+  line-height: 50px;
+  background: #444;
+  text-align: center;
+}
