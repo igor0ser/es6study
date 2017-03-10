@@ -1,18 +1,32 @@
 import './main.css';
-import data from './data.json';
-import render from './helpers/render';
 import table from './table';
-import formatDate from './helpers/formatDate';
+import reducer from './reducer';
+import createStore from './createStore';
 
 const columns = ['country', 'startDate', 'endDate', 'price'];
 
-const tableData = data.tours.map(item => ({
-  ...item,
-  startDate: formatDate(item.startDate),
-  endDate: formatDate(item.endDate),
-}));
+const store = createStore(reducer);
+const wrapper = document.getElementById('wrapper');
 
-console.log('tableData');
-console.log(tableData);
+wrapper.addEventListener('click', (e) => {
+  const index = e.target.getAttribute('data-index');
+  if (index) {
+    store.dispatch({ type: 'SORT', index });
+  }
+});
 
-render(table(columns, tableData));
+const render = () => {
+  const { data, index } = store.getState();
+
+  const sortFunc = (item1, item2) => {
+    const key = columns[index];
+    return item1[key] > item2[key];
+  }
+  const tableHTML = table(columns, data.sort(sortFunc));
+  wrapper.innerHTML = tableHTML;
+};
+
+render();
+
+store.subscribe(render);
+
