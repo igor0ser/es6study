@@ -2,12 +2,17 @@ import './main.css';
 import data from './data.json';
 import render from './helpers/render';
 import table from './table';
+import formatDate from './helpers/formatDate';
 
 const columns = ['country', 'startDate', 'endDate', 'price'];
 
-console.log('Hello, ES6!');
-console.log(data);
+const tableData = data.tours.map(item => ({
+  ...item,
+  startDate: formatDate(item.startDate),
+  endDate: formatDate(item.endDate),
+}));
 
-console.log(table(columns, data.tours));
+console.log('tableData');
+console.log(tableData);
 
-render(table(columns, data.tours));
+render(table(columns, tableData));
