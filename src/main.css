@@ -28,6 +28,7 @@ th {
   background: #444;
   padding: 10px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 th:last-child {

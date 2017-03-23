@@ -1,9 +1,11 @@
 import './main.css';
-import data from './data.json';
+import { tours } from './data.json';
+import table from './table';
 
-console.group('ES6');
-console.log('Hello, ES6!');
-console.log(data);
-console.groupEnd();
+console.log(tours);
 
+document.getElementById('app').innerHTML =
+	table(tours, ['country', 'price', 'startDate', 'endDate']);
+
+	console.log(table(tours, ['country', 'price', 'startDate', 'endDate']));
 
