@@ -1,11 +1,34 @@
+import React from 'react';
+import { render } from 'react-dom';
 import './main.css';
 import { tours } from './data.json';
-import table from './table';
+import Table from './table/Table';
 
-console.log(tours);
+const columns = ['country', 'price', 'startDate', 'endDate'];
 
-document.getElementById('app').innerHTML =
-	table(tours, ['country', 'price', 'startDate', 'endDate']);
+render(
+	<Table data={tours} columns={columns} />,
+	document.getElementById('app')
+);
 
-	console.log(table(tours, ['country', 'price', 'startDate', 'endDate']));
+/*
+const render = tours => {
+	wrapper.innerHTML =
+		table(tours, columns);
+};
 
+render(tours);*/
+
+/*
+wrapper.addEventListener('click', (event) => {
+	const index = event.target.getAttribute('data-index');
+	if (index) {
+		const sortKey = columns[index - 1];
+		const sortedTours = [...tours].sort((a, b) =>
+			a[sortKey] > b[sortKey] ? 1 : -1
+		);
+
+		render(tours);
+	}
+});
+*/
